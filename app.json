@@ -1,0 +1,12 @@
+{
+  "name": "openwheelsapp",
+  "displayName": "openwheelsapp",
+  "expo": {
+    "name": "openwheelsapp",
+    "slug": "openwheelsapp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
