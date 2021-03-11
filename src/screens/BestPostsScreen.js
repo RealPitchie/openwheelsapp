@@ -8,9 +8,9 @@ import {
 	listenOrientationChange as lor,
 	removeOrientationListener as rol
   } from 'react-native-responsive-screen';
-import { Header } from 'react-native/Libraries/NewAppScreen';
+import { Header } from '../components/Header';
 
-export default class BestPostsScreen extends Component {
+export class BestPostsScreen extends Component {
 	_isMounted = false;
 	state = {
 		list: [],
@@ -88,52 +88,48 @@ export default class BestPostsScreen extends Component {
 			</React.Fragment>
 			
 		 
-		);
+		); 
 	};
 
 	render = () => {
 		const {isFetching, list} = this.state;
 		 
-		return (
-			// <ScrollView>
-			// 	<View>
-			// 		{ list.map((item, key)=>(
-						
-			// 			<Text key={key} style={styles.TextStyle} onPress={ this.onItemPress.bind(this, item) }> { item.title } </Text>)
-			// 		)}
-			// 	</View>
-			// </ScrollView>
-		<View style={styles.container}>
-			<FlatList
-				style={styles.list}
-				data={list}
-				renderItem={this.renderItem}
-				keyExtractor={this.keyExtractor}
-				refreshing={isFetching}
-				onRefresh={this.onRefresh}
-				onEndReached={this.onScrollToEnd}
-				onEndReachedThreshold={0.2}
-			/>
-			 
-		</View>
+		return ( 
+		<React.Fragment>
+		<Header text='Лучшее'/>
+			<View style={styles.container}>
+				<FlatList
+					style={styles.list}
+					data={list}
+					renderItem={this.renderItem}
+					keyExtractor={this.keyExtractor}
+					refreshing={isFetching}
+					onRefresh={this.onRefresh}
+					onEndReached={this.onScrollToEnd}
+					onEndReachedThreshold={0.2}
+				/>
+				
+			</View>
+		</React.Fragment>
 		);
 	};
 }
-
+export default BestPostsScreen;
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-	width: Dimensions.get('window').width,
-	height: Dimensions.get('window').height
+		marginTop:0,
+		flex: 1,
+		width: Dimensions.get('window').width,
+		height: Dimensions.get('window').height
   },
-  textWrapper: {
-    height: hp('95%'),  
-    width: wp('95%')  
-  },
-  myText: {
-    fontSize: hp('5%') 
-  },
-  list: {
-	marginRight: 10,
-  },
+textWrapper: {
+		height: hp('95%'),  
+		width: wp('95%')  
+	},
+myText: {
+		fontSize: hp('5%') 
+	},
+list: {
+		marginRight: 10,
+},
 });

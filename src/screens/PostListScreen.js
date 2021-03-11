@@ -8,7 +8,7 @@ import {
 	listenOrientationChange as lor,
 	removeOrientationListener as rol
   } from 'react-native-responsive-screen';
-import { Header } from 'react-native/Libraries/NewAppScreen';
+import { Header } from '../components/Header';
 
 export class PostListScreen extends Component {
 	_isMounted = false;
@@ -84,19 +84,16 @@ export class PostListScreen extends Component {
 				imageHeight={ 200 }
 				roundedImage={ false }
 				onPress={this.onItemPress.bind(this, item)}
-			/>  
-		// <PersonListItem
-		// 	person={item}
-		// 	onPress={this.onItemPress.bind(this, item)}
-		// />
+			/>   
 		);
 	};
 
 	render = () => {
 		const {isFetching, list} = this.state;
-		 
+		  
 		return (
 		<React.Fragment> 
+			<Header text='Главная'/>
 			<View style={styles.container}>
 				<FlatList
 					style={styles.list}

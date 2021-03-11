@@ -1,50 +1,54 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Image, Text} from 'react-native';
+import {StyleSheet, View, Image, Text, SafeAreaView} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
-
+import { Header } from "../components/Header";
+import PostHeader from '../components/PostHeader';
 
 export class PostScreen extends Component {
 	 
 	onSwipeRight(gestureState) {
-	this.props.navigation.navigate('Главная')
+		this.props.navigation.navigate('Главная')
 	}
 	render = () => {
 		const {person} = this.props.route.params;
-	 
+		const {navigate} = this.props.navigation;
 		let image = 'https://openwheels.tk' + person.imageFile[0];
 		return ( 
-		<GestureRecognizer
-			onSwipeRight={(state) => this.onSwipeRight(state)}>
-			<ScrollView>
-				<View style={styles.container}>
-				<Text style={styles.cellTitle}>{person.title}</Text> 
-				<Image
-					source={{uri: image}}
-					style={styles.avatar}
-					resizeMode={'cover'}
-				/>
-				<View key={person.id} style={{margin: 10}}>
+			<SafeAreaView style={'marginTop: 25'}>
+				<GestureRecognizer
+					onSwipeRight={(state) => this.onSwipeRight(state)}>
+					<PostHeader navigation={navigate} text='Пост' />
+					<ScrollView>
+						<View style={styles.container}>
+							
+							<Text style={styles.cellTitle}>{person.title}</Text> 
+							<Image
+								source={{uri: image}}
+								style={styles.avatar}
+								resizeMode={'cover'}
+						/>
+						<View key={person.id} style={{margin: 10}}>
+							
+							<Text style={styles.cellSubtitle}>{person.subtitle}</Text>
+							{   
+								person.text.map((item, key)=>(
+								<Text key={key} style={styles.cellValue}  > { item } </Text>)
+							)}
+							</View>
+						</View>
+					</ScrollView> 
 					
-					<Text style={styles.cellSubtitle}>{person.subtitle}</Text>
-					{   
-						person.text.map((item, key)=>(
-						<Text key={key} style={styles.cellValue}  > { item } </Text>)
-					)}
-					</View>
-				</View>
-			</ScrollView> 
-			 
-		</GestureRecognizer>
-	);
+				</GestureRecognizer>
+	
+			</SafeAreaView>
+		);
 	};
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	margin: 10,
-		alignItems: 'center',
+	container: { 
+		margin: 10, 
 	},
 	avatar: {
 		width: 400,
