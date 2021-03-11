@@ -11,14 +11,13 @@ export class PostScreen extends Component {
 		this.props.navigation.navigate('Главная')
 	}
 	render = () => {
-		const {person} = this.props.route.params;
-		const {navigate} = this.props.navigation;
+		const {person} = this.props.route.params; 
 		let image = 'https://openwheels.tk' + person.imageFile[0];
 		return ( 
 			<SafeAreaView style={'marginTop: 25'}>
 				<GestureRecognizer
 					onSwipeRight={(state) => this.onSwipeRight(state)}>
-					<PostHeader navigation={navigate} text='Пост' />
+					<PostHeader text='Пост' navigation={this.props.navigation}/> 
 					<ScrollView>
 						<View style={styles.container}>
 							

@@ -13,12 +13,13 @@ export class PostHeader extends Component{
     } 
     myIcon = (
         
-        <TouchableOpacity style={styles.backIcon} >
+        <TouchableOpacity style={styles.backIcon} onPress={() => this.props.navigation.navigate('Главная')}>
             <Icon name="arrow-left" size={24} color="grey" />
         </TouchableOpacity>
         
     );
     render(){
+        const { navigation, value, title } = this.props; 
         return(
             
             <View style={styles.headerView}>
